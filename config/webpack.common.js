@@ -32,7 +32,10 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 include: helpers.root('client'),
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                query: {
+           presets: [ 'react','env','stage-2']
+        }
             }
         ]
     },

@@ -4,7 +4,7 @@ applications:
   buildpack: sdk-for-nodejs
   memory: 256M
   instances: 1
-  name: CIOChatBot13
-  host: CIOChatBot13
+  name: CIOChatBot14
+  host: CIOChatBot14
   command: node server.js
   disk_quota: 1024M
