@@ -23,19 +23,15 @@ function initDBConnection() {
   //containing all the service credentials of all the bound services
   var cloudant;
   if (process.env.VCAP_SERVICES) {
-  //  var cloudant = new Cloudant({ url: 'https://examples.cloudant.com', plugins: { iamauth: { iamApiKey: 'xxxxxxxxxx' } } });
 
-//   cloudant = Cloudant({ vcapInstanceName: 'cloudantNoSQLDB', vcapServices: JSON.parse(process.env.VCAP_SERVICES) });
+services = JSON.parse(process.env.VCAP_SERVICES);
 
-  //dbCredentials.url = (process.env.VCAP_SERVICES.cloudant_url);
-    dbCredentials.url =
-      "https://821b2374-dd44-43a6-bb34-e7cfbd9daf6e-bluemix:22ab406ca4fd656bd5240e67ed6471c90d1b1683a96f62e4b433cf0b4debb95a@821b2374-dd44-43a6-bb34-e7cfbd9daf6e-bluemix.cloudant.com";
+dbCredentials.url = services.cloudantNoSQLDB[0].credentials.url;
+
   } else {
     //When running locally, the VCAP_SERVICES will not be set
 
-    dbCredentials.url =
-      "https://821b2374-dd44-43a6-bb34-e7cfbd9daf6e-bluemix:22ab406ca4fd656bd5240e67ed6471c90d1b1683a96f62e4b433cf0b4debb95a@821b2374-dd44-43a6-bb34-e7cfbd9daf6e-bluemix.cloudant.com";
-//cloudant = require("cloudant")(dbCredentials.url);
+    dbCredentials.url = Credentials.DBCreds;
   }
 
 cloudant = require("cloudant")(dbCredentials.url);
@@ -53,23 +49,6 @@ cloudant = require("cloudant")(dbCredentials.url);
 
   db = cloudant.use(dbCredentials.dbName);
 
-  // for (let [k, v] of ChartsData) {
-  //   console.log(k);
-  //   var obj = {"type":k,"answers":v}
-  //
-  // //inserting
-  //         db.insert(obj, function(err, data) {
-  //       		if (err) {
-  //             console.log("ERROR");
-  //       		//	console.log(err);
-  //       			return;
-  //       		}
-  //
-  //       		console.log("DONE");
-  //       	});
-  //
-  //   console.log(obj);
-  // }
 }
 
 initDBConnection();
@@ -93,23 +72,7 @@ function addChartData(){
   }
 }
 function updateChartData(question, answer) {
-  // for (let [k, v] of ChartsData) {
-  //   console.log(k);
-  //   var obj = {"type":k,"answers":v}
-  //
-  // //inserting
-  //         db.insert(obj, function(err, data) {
-  //       		if (err) {
-  //             console.log("ERROR");
-  //       		//	console.log(err);
-  //       			return;
-  //       		}
-  //
-  //       		console.log("DONE");
-  //       	});
-  //
-  //   console.log(obj);
-  // }
+
   return new Promise((resolve, reject) => {
     console.log(question);
     var query = {
@@ -183,6 +146,8 @@ function updateChartData(question, answer) {
   // });
 }
 
+
+//Uncomment to add data
 //addChartData();
 
 //END OF NEW CODE

@@ -1,10 +1,10 @@
 
 applications:
 - path: .
-  buildpack: https://github.com/cloudfoundry/nodejs-buildpack
+  buildpack: sdk-for-nodejs
   memory: 256M
   instances: 1
-  name: CIOChatBot
-  host: CIOChatBot
+  name: CIOChatBot13
+  host: CIOChatBot13
   command: node server.js
   disk_quota: 1024M
