@@ -164,7 +164,8 @@ exports.sendMessage = function(req, res, next) {
         next(err);
       } else {
         console.log("response: ");
-        console.log(response);
+
+        console.log(response.context.ibm);
         //console.log(db);
         //  console.log(response.context.system);
         let chartData = [];
@@ -226,46 +227,83 @@ exports.sendMessage = function(req, res, next) {
 
                   if (data.docs[0].answers[i].name == req.body.message) {
                     console.log("FOUND");
-                    data.docs[0].answers[i].value = data.docs[0].answers[i].value + 1;
-                    an=data.docs[0].answers[i].value;
+                if(response.context.ibm=='ibm'){
+                  data.docs[0].answers[i].value = data.docs[0].answers[i].value;
+                  an=data.docs[0].answers[i].value;
+                  var answer= response.output.text[0].replace("[Answer]",an);
+                  console.log("new response "+response.output.text[0]);
+
+                  cdata = data.docs[0].answers;
+                  an="";
+                  response.output.text[0]=answer;
+
+                  res.json({
+                    response: response.output.text,
+                    context: response.context,
+                    chartData: cdata
+                  });
+
+
+
+
+
+                }
+
+                else {
+                  data.docs[0].answers[i].value = data.docs[0].answers[i].value+1;
+                  an=data.docs[0].answers[i].value;
+
+
+
+
+                  db.insert(data.docs[0], function(err, body) {
+                    if (!err) {
+                      console.log(body);
+
+                      var query = {
+                              selector: {
+                                type: filteredEntities[0].entity
+                              }
+                            };
+                            var cdata = [];
+                            db.find(query, function(err, data) {
+
+
+
+                              console.log("NEW Data");
+                              console.log(data);
+
+                              cdata = data.docs[0].answers;
+                              var answer= response.output.text[0].replace("[Answer]",an);
+                              console.log("new response "+response.output.text[0]);
+                              an="";
+                              response.output.text[0]=answer;
+                              res.json({
+                                response: response.output.text,
+                                context: response.context,
+                                chartData: cdata
+                              });
+                            });
+
+
+
+                    } else {
+                      console.log(err);
+                    }
+                  });
+
+
+
+
+
+
+
+                }
+
                     console.log(data.docs[0].answers[i].value);
 
-                    db.insert(data.docs[0], function(err, body) {
-                      if (!err) {
-                        console.log(body);
 
-                        var query = {
-                                selector: {
-                                  type: filteredEntities[0].entity
-                                }
-                              };
-                              var cdata = [];
-                              db.find(query, function(err, data) {
-
-
-
-                                console.log("NEW Data");
-                                console.log(data);
-
-                                cdata = data.docs[0].answers;
-                                var answer= response.output.text[0].replace("[Answer]",an);
-                                console.log("new response "+response.output.text[0]);
-                                an="";
-                                response.output.text[0]=answer;
-                                res.json({
-                                  response: response.output.text,
-                                  context: response.context,
-                                  chartData: cdata
-                                });
-                              });
-
-
-
-                      } else {
-                        console.log(err);
-                      }
-                    });
-found=true;
+                    found=true;
                     break;
                   }
                   else {

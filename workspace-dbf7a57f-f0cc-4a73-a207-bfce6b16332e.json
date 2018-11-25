@@ -1,1 +1,1413 @@
-{"name":"CIO_demo","intents":[],"entities":[{"entity":"role","values":[{"type":"synonyms","value":"it coordinator and manager","synonyms":["it coordinator","it manager","coordinator","manager"]},{"type":"synonyms","value":"transformational business leader","synonyms":["transformational leader","business leader","leader"]},{"type":"synonyms","value":"trusted business advisor","synonyms":["trusted advisor","business advisor","advisor"]},{"type":"synonyms","value":"technology visionary","synonyms":["tech visionary","visionary"]}],"fuzzy_match":true},{"entity":"impact","values":[{"type":"synonyms","value":"competition","synonyms":[]},{"type":"synonyms","value":"market changes","synonyms":["market","changes"]},{"type":"synonyms","value":"inside the organization","synonyms":["inside","organization","inside the organization"]},{"type":"synonyms","value":"technology","synonyms":["tech"]}],"fuzzy_match":true},{"entity":"tech","values":[{"type":"synonyms","value":"3d printing","synonyms":[]},{"type":"synonyms","value":"physical robots","synonyms":["robots"]},{"type":"synonyms","value":"mobile technology and appliances","synonyms":["mobile tech"]},{"type":"synonyms","value":"augmented reality","synonyms":["ar","augmented"]},{"type":"synonyms","value":"virtual reality","synonyms":["vr","virtual"]},{"type":"synonyms","value":"blockchain","synonyms":[]},{"type":"synonyms","value":"ai/cognitive computing","synonyms":["ai","artificial intelligence","cognitive","cognitive computing","machine learning"]},{"type":"synonyms","value":"internet of things","synonyms":["iot"]},{"type":"synonyms","value":"robotic process automation","synonyms":["robotics","automation","process automation"]},{"type":"synonyms","value":"cloud computing","synonyms":["cloud"]}],"fuzzy_match":true},{"entity":"innovation","values":[{"type":"synonyms","value":"internal","synonyms":["internal innovation","internal","internally"]},{"type":"synonyms","value":"external","synonyms":["external innovation","partner","external","externally"]}],"fuzzy_match":true},{"entity":"cio_confirmation","values":[{"type":"synonyms","value":"yes","synonyms":["sure","yes please","yeah"]},{"type":"synonyms","value":"no","synonyms":["nope","not really"]}],"fuzzy_match":true},{"entity":"email","values":[{"type":"patterns","value":"email","patterns":["(.+)\\@(.+)\\.(.+)"]}]},{"entity":"priorities","values":[{"type":"synonyms","value":"meet business needs","synonyms":["needs","business","business needs"]},{"type":"synonyms","value":"optimize investments","synonyms":["optimise","investments"]},{"type":"synonyms","value":"build better digital experience","synonyms":["digital experience","digital","better digital experience"]},{"type":"synonyms","value":"innovate for competetive advantage","synonyms":["innovate","competetive","advantage","competitive advantage"]}],"fuzzy_match":true},{"entity":"transform_confirmation","values":[{"type":"synonyms","value":"yes","synonyms":["yes please","yeah","sure"]},{"type":"synonyms","value":"no","synonyms":["nope","not really"]}],"fuzzy_match":false},{"entity":"sys-person","values":[]},{"entity":"phone","values":[{"type":"patterns","value":"phone","patterns":["[0-9]+"]}]},{"entity":"org_type","values":[{"type":"synonyms","value":"reinventer","synonyms":["reinventor"]},{"type":"synonyms","value":"practitioner","synonyms":[]},{"type":"synonyms","value":"aspirational","synonyms":[]}],"fuzzy_match":true},{"entity":"barriers","values":[{"type":"synonyms","value":"lack of skills","synonyms":["skills","no skills"]},{"type":"synonyms","value":"cyber security threats","synonyms":["security","cyber security","security threats","cyber threats"]},{"type":"synonyms","value":"culture and people","synonyms":["culture","people","culture and people"]},{"type":"synonyms","value":"it budget","synonyms":["budget"]}],"fuzzy_match":true},{"entity":"insights_confirmation","values":[{"type":"synonyms","value":"no","synonyms":["nope","no thanks","not really"]},{"type":"synonyms","value":"yes","synonyms":["yes please","yeah","sure"]}]}],"language":"en","metadata":{"api_version":{"major_version":"v1","minor_version":"2018-07-10"}},"description":"","dialog_nodes":[{"type":"slot","output":{},"parent":"node_1_1525525866746","metadata":{},"variable":"$name","dialog_node":"slot_2_1525526028320","previous_sibling":"node_1_1525630753702"},{"type":"standard","title":"Company","output":{"text":{"values":["Can you tell me what company you work for?"],"selection_policy":"sequential"}},"parent":"node_1_1525525866746","context":{"graph":false,"choices":false},"metadata":{},"conditions":"true","dialog_node":"node_1_1525630753702"},{"type":"standard","title":"Insights-no","output":{"text":{"values":["OK, thank you for taking the time to speak with us."],"selection_policy":"sequential"}},"parent":"node_33_1525641715744","context":{"graph":false,"choices":false},"metadata":{},"conditions":"@insights_confirmation:no","dialog_node":"node_32_1525641084324","previous_sibling":"node_31_1525641079542"},{"type":"standard","title":"Insights-yes","output":{"text":{"values":["Great! Let me ask you some questions."],"selection_policy":"sequential"}},"parent":"node_33_1525641715744","context":{"graph":false,"choices":false},"metadata":{},"next_step":{"behavior":"jump_to","selector":"body","dialog_node":"node_6_1525526674582"},"conditions":"@insights_confirmation:yes","dialog_node":"node_31_1525641079542"},{"type":"standard","title":"transform_answer","output":{},"parent":"node_11_1525634199910","metadata":{"_customization":{"mcr":true}},"next_step":{"behavior":"jump_to","selector":"body","dialog_node":"node_5_1525526114500"},"conditions":"@transform_confirmation","dialog_node":"node_12_1525634199956"},{"type":"response_condition","output":{"text":{"values":["[Answer]% of CIOs also prioritize optimising investments."],"selection_policy":"sequential"}},"parent":"node_18_1525634586170","context":{},"metadata":{},"conditions":"@priorities:(optimize investments)","dialog_node":"node_21_1525634586170","previous_sibling":"node_20_1525634586170"},{"type":"response_condition","output":{"text":{"values":["[Answer]% of CIOs also prioritize optimising meeting business needs."],"selection_policy":"sequential"}},"parent":"node_18_1525634586170","context":{},"metadata":{},"conditions":"@priorities:(meet business needs)","dialog_node":"node_20_1525634586170","previous_sibling":"node_19_1525634586170"},{"type":"response_condition","output":{"text":{"values":["[Answer]% of CIOs also prioritize building better digital experiences."],"selection_policy":"sequential"}},"parent":"node_18_1525634586170","context":{},"metadata":{},"conditions":"@priorities:(build better digital experience)","dialog_node":"node_22_1525634586170","previous_sibling":"node_21_1525634586170"},{"type":"response_condition","output":{"text":{"values":["[Answer]% of CIOs also prioritize innovating for competetive advantage."],"selection_policy":"sequential"}},"parent":"node_18_1525634586170","context":{},"metadata":{},"conditions":"@priorities:(innovate for competetive advantage)","dialog_node":"node_19_1525634586170"},{"type":"standard","title":"Phone Recieved","output":{},"parent":"node_4_1528067759895","metadata":{},"next_step":{"behavior":"jump_to","selector":"body","dialog_node":"node_42_1525529118486"},"conditions":"@phone","dialog_node":"node_1_1529702816686"},{"type":"standard","title":"Name","output":{"text":{"values":["Great! Hi $name, it's nice to meet you."],"selection_policy":"sequential"}},"parent":"Welcome","context":{"name":"<?input_text?>","graph":false,"choices":false},"metadata":{"fallback":"leave"},"next_step":{"behavior":"skip_user_input"},"conditions":"true","dialog_node":"node_1_1525525866746","digress_out":"allow_all"},{"type":"response_condition","output":{"text":{"values":["Can you Please enter you Email?"]}},"parent":"node_1_1528066861501","context":{"graph":false,"choices":false},"metadata":{},"conditions":"@cio_confirmation:yes","dialog_node":"node_2_1528066904060","previous_sibling":"node_4_1528067759895"},{"type":"response_condition","output":{"text":{"values":["Thank you for taking part in this survey. We hope you gained some industry insight."]}},"parent":"node_1_1528066861501","metadata":{},"conditions":"@cio_confirmation:no","dialog_node":"node_3_1528066928683","previous_sibling":"node_2_1528066904060"},{"type":"standard","title":"Email Recieved","output":{"text":{"values":["Please Enter your Phone number"],"selection_policy":"sequential"}},"parent":"node_1_1528066861501","metadata":{},"conditions":"@email","dialog_node":"node_4_1528067759895"},{"type":"standard","title":"priorities_answer","output":{},"parent":"node_17_1525634586096","metadata":{"_customization":{"mcr":true}},"next_step":{"behavior":"jump_to","selector":"body","dialog_node":"node_23_1525635643714"},"conditions":"@priorities","dialog_node":"node_18_1525634586170"},{"type":"standard","title":"Contact You Reply","output":{},"parent":"node_1_1528066301305","metadata":{"_customization":{"mcr":true}},"conditions":"@cio_confirmation","dialog_node":"node_1_1528066861501","digress_out":"allow_all"},{"type":"event_handler","output":{},"parent":"slot_2_1525526028320","context":{"name":"<?input_text?>"},"metadata":{},"conditions":"@name.literal","event_name":"input","dialog_node":"handler_3_1525526028320","previous_sibling":"handler_4_1525526028320"},{"type":"event_handler","output":{},"parent":"slot_2_1525526028320","metadata":{},"event_name":"focus","dialog_node":"handler_4_1525526028320"},{"type":"event_handler","output":{},"parent":"slot_3_1525631495214","event_name":"focus","dialog_node":"handler_5_1525631495214","previous_sibling":"handler_4_1525631495214"},{"type":"event_handler","output":{},"parent":"slot_3_1525631495214","context":{"company":"@company.literal"},"metadata":{},"conditions":"@company.literal","event_name":"input","dialog_node":"handler_4_1525631495214"},{"type":"response_condition","output":{"text":{"values":["[Answer]% of CIOs also find culture and people to be the biggest barrier to success."],"selection_policy":"sequential"}},"parent":"node_24_1525635643778","context":{},"metadata":{},"conditions":"@barriers:(culture and people)","dialog_node":"node_27_1525635643778","previous_sibling":"node_26_1525635643778"},{"type":"response_condition","output":{"text":{"values":["[Answer]% of CIOs also find cyber security threats to be the biggest barrier to success."],"selection_policy":"sequential"}},"parent":"node_24_1525635643778","context":{},"metadata":{},"conditions":"@barriers:(cyber security threats)","dialog_node":"node_26_1525635643778","previous_sibling":"node_25_1525635643778"},{"type":"response_condition","output":{"text":{"values":["[Answer]% of CIOs also find budget to be the biggest barrier to success."],"selection_policy":"sequential"}},"parent":"node_24_1525635643778","context":{},"metadata":{},"conditions":"@barriers:(it budget)","dialog_node":"node_28_1525635643778","previous_sibling":"node_27_1525635643778"},{"type":"response_condition","output":{"text":{"values":["[Answer]% of CIOs also find lack of skills to be the biggest barrier to success."],"selection_policy":"sequential"}},"parent":"node_24_1525635643778","context":{},"metadata":{},"conditions":"@barriers:(lack of skills)","dialog_node":"node_25_1525635643778"},{"type":"event_handler","output":{},"parent":"slot_34_1525647651718","event_name":"focus","dialog_node":"handler_36_1525647651718","previous_sibling":"handler_35_1525647651718"},{"type":"event_handler","parent":"slot_34_1525647651718","event_name":"input","dialog_node":"handler_35_1525647651718"},{"type":"event_handler","output":{"text":"Sorry I didn't get that. Would you prefer internal or external innovation?"},"parent":"slot_12_1525527337386","event_name":"focus","dialog_node":"handler_14_1525527337386","previous_sibling":"handler_13_1525527337386"},{"type":"event_handler","parent":"slot_12_1525527337386","context":{"innovation":"@innovation"},"conditions":"@innovation","event_name":"input","dialog_node":"handler_13_1525527337386"},{"type":"frame","title":"Innovation_a","output":{},"parent":"node_5_1525526114500","metadata":{"fallback":"leave","_customization":{"mcr":true}},"next_step":{"behavior":"jump_to","selector":"body","dialog_node":"node_1_1528066301305"},"conditions":"@innovation","dialog_node":"node_10_1525527313404","digress_out":"allow_all","digress_out_slots":"not_allowed"},{"type":"standard","title":"Job_title","output":{"text":{"values":["Thank you. Would you like to learn about some CIO insights anyway?"],"selection_policy":"sequential"}},"parent":"node_10_1525632091312","context":{"graph":false,"choices":true,"options":"Yes,No"},"metadata":{},"conditions":"true","dialog_node":"node_33_1525641715744"},{"type":"slot","parent":"node_2_1525631453104","dialog_node":"slot_34_1525647651718","previous_sibling":"slot_3_1525631495214"},{"type":"slot","output":{},"parent":"node_2_1525631453104","metadata":{},"variable":"$company","dialog_node":"slot_3_1525631495214","previous_sibling":"node_10_1525632091312"},{"type":"standard","title":"CIO:no","output":{"text":{"values":["Can we ask what position you hold in your company?"],"selection_policy":"sequential"}},"parent":"node_2_1525631453104","context":{"graph":false,"choices":false},"metadata":{},"conditions":"@cio_confirmation:no","dialog_node":"node_10_1525632091312","previous_sibling":"node_6_1525631820232"},{"type":"standard","title":"CIO:yes","output":{"text":{"values":["Great! Would you like to know what other CIOs think?"]}},"parent":"node_2_1525631453104","context":{"graph":false,"choices":true,"options":"Yes,No"},"metadata":{"_customization":{"mcr":false}},"conditions":"@cio_confirmation:yes","dialog_node":"node_6_1525631820232","digress_out":"allow_all"},{"type":"standard","title":"company_a","output":{"text":{"values":["Great! Are you a CIO at your company?"],"selection_policy":"sequential"}},"parent":"node_1_1525630753702","context":{"graph":false,"choices":true,"options":"Yes,No"},"metadata":{"fallback":"leave"},"conditions":"true","dialog_node":"node_2_1525631453104","digress_out":"allow_all"},{"type":"response_condition","output":{"text":{"values":["You're not alone. [Answer]% of CIOs focus on inside the organization for the greatest impact."],"selection_policy":"sequential"}},"parent":"node_7_1525526769464","context":{},"metadata":{},"conditions":"@impact:(inside the organization)","dialog_node":"node_15_1525634435918","previous_sibling":"node_9_1525526905956"},{"type":"response_condition","output":{"text":{"values":["You're not alone. [Answer]% of CIOs focus on competition for the greatest impact."],"selection_policy":"sequential"}},"parent":"node_7_1525526769464","context":{},"metadata":{},"conditions":"@impact:competition","dialog_node":"node_16_1525634438152","previous_sibling":"node_15_1525634435918"},{"type":"response_condition","output":{"text":{"values":["You're not alone. [Answer]% of CIOs focus on market changes for the greatest impact."],"selection_policy":"sequential"}},"parent":"node_7_1525526769464","context":{},"metadata":{},"conditions":"@impact:(market changes)","dialog_node":"node_9_1525526905956","previous_sibling":"node_8_1525526819722"},{"type":"response_condition","output":{"text":{"values":["You're not alone. [Answer]% of CIOs focus on technology for the greatest impact."],"selection_policy":"sequential"}},"parent":"node_7_1525526769464","context":{},"metadata":{},"conditions":"@impact:technology","dialog_node":"node_8_1525526819722"},{"type":"standard","title":"impact_answer","output":{},"parent":"node_6_1525526674582","metadata":{"_customization":{"mcr":true}},"next_step":{"behavior":"jump_to","selector":"body","dialog_node":"node_17_1525634586096"},"conditions":"@impact","dialog_node":"node_7_1525526769464","digress_out":"allow_all"},{"type":"standard","title":"barriers_answer","output":{},"parent":"node_23_1525635643714","metadata":{"_customization":{"mcr":true}},"next_step":{"behavior":"jump_to","selector":"body","dialog_node":"node_11_1525634199910"},"conditions":"@barriers","dialog_node":"node_24_1525635643778"},{"type":"response_condition","output":{"text":{"values":["You're in the majority. [Answer]% of CIOs feel the need to transform due to competitor innovation. 72% don't."],"selection_policy":"sequential"}},"parent":"node_12_1525634199956","context":{},"metadata":{},"conditions":"@transform_confirmation:no","dialog_node":"node_14_1525634199956","previous_sibling":"node_13_1525634199956"},{"type":"response_condition","output":{"text":{"values":["You're not alone. [Answer]% of CIOs feel the need to transform due to competition. It's the highest percentage of the C-suite members."],"selection_policy":"sequential"}},"parent":"node_12_1525634199956","context":{},"metadata":{},"conditions":"@transform_confirmation:yes","dialog_node":"node_13_1525634199956"},{"type":"standard","title":"Insights:no","output":{"text":{"values":["Ok, thank you for taking the time to speak to us."],"selection_policy":"sequential"}},"parent":"node_6_1525631820232","context":{"graph":false,"choices":false},"metadata":{},"conditions":"@insights_confirmation:no","dialog_node":"node_30_1525640960744","previous_sibling":"node_29_1525640855162"},{"type":"response_condition","output":{"text":{"values":[""]}},"parent":"node_6_1525631820232","disabled":true,"metadata":{},"dialog_node":"node_8_1525631874312","previous_sibling":"node_7_1525631849696"},{"type":"response_condition","output":{"text":{"values":["Great! Would you like to know where you stand against your peers?"]}},"parent":"node_6_1525631820232","disabled":true,"metadata":{},"conditions":"@cio_confirmation:yes","dialog_node":"node_7_1525631849696","previous_sibling":"node_30_1525640960744"},{"type":"standard","title":"Insights:yes","output":{"text":{"values":["That's great! Let me ask you a few questions."],"selection_policy":"sequential"}},"parent":"node_6_1525631820232","context":{"graph":false,"choices":false},"metadata":{},"next_step":{"behavior":"jump_to","selector":"body","dialog_node":"node_6_1525526674582"},"conditions":"@insights_confirmation:yes","dialog_node":"node_29_1525640855162"},{"type":"response_condition","output":{"text":{"values":["[Answer]% of CIOs feel the same as you do. They prefer partnering for external innovation."],"selection_policy":"sequential"}},"parent":"node_10_1525527313404","context":{},"metadata":{},"conditions":"@innovation:external","dialog_node":"node_15_1525527413042","previous_sibling":"node_11_1525527337362"},{"type":"slot","parent":"node_10_1525527313404","variable":"$innovation","dialog_node":"slot_12_1525527337386","previous_sibling":"node_15_1525527413042"},{"type":"response_condition","output":{"text":{"values":["[Answer]% of CIO feel the same as you do. They prefer internal innovation."],"selection_policy":"sequential"}},"parent":"node_10_1525527313404","context":{},"metadata":{},"conditions":"@innovation:internal","dialog_node":"node_11_1525527337362"},{"type":"standard","title":"Anything else","output":{"text":{"values":["I didn't understand. You can try rephrasing.","Can you reword your statement? I'm not understanding.","I didn't get your meaning."],"selection_policy":"sequential"}},"metadata":{},"conditions":"anything_else","dialog_node":"Anything else","previous_sibling":"node_9_1525631987618"},{"type":"standard","title":"Innovate","output":{"text":{"values":["Would you prefer to innovate internally or partner for external innovation?"],"selection_policy":"sequential"}},"context":{"graph":true,"choices":true,"options":"Internally,Externally"},"metadata":{},"digress_in":"does_not_return","dialog_node":"node_5_1525526114500","previous_sibling":"node_11_1525634199910"},{"type":"standard","title":"Impact","output":{"text":{"values":["The modern CIO is constantly balancing where they focus for the biggest impact. Where do you look for the greatest impact in 2018?"],"selection_policy":"sequential"}},"context":{"graph":true,"choices":true,"options":"Technology,Competition,Inside the organization,Market changes"},"metadata":{},"digress_in":"does_not_return","dialog_node":"node_6_1525526674582","previous_sibling":"Welcome"},{"type":"standard","title":"Barriers","output":{"text":{"values":["What are your biggest barriers to success for 2018?"],"selection_policy":"sequential"}},"context":{"graph":true,"choices":true,"options":"Cyber security threats,Culture and people,Lack of skills,IT budgets"},"metadata":{},"digress_in":"does_not_return","dialog_node":"node_23_1525635643714","previous_sibling":"node_17_1525634586096"},{"type":"standard","title":"thank you","output":{"text":{"values":["Thank you for taking part in this survey. We hope you gained some industry insight."],"selection_policy":"sequential"}},"context":{"graph":false,"choices":false},"metadata":{},"dialog_node":"node_42_1525529118486","previous_sibling":"node_1_1528066301305"},{"type":"standard","title":"Want Us To Contact You","output":{"text":{"values":["Do you want an IBM specialist to contact you to further discuss your priorities and challenges?"],"selection_policy":"sequential"}},"context":{"graph":true,"choices":true,"options":"yes,no"},"metadata":{},"dialog_node":"node_1_1528066301305","previous_sibling":"node_5_1525526114500"},{"type":"standard","title":"No_response","output":{},"metadata":{},"dialog_node":"node_9_1525631987618","previous_sibling":"node_42_1525529118486"},{"type":"standard","title":"Priorities","output":{"text":{"values":["What are your top priorities for 2018?"],"selection_policy":"sequential"}},"context":{"graph":true,"choices":true,"options":"Meeting business needs,Optimizing investments,Innovate for competitive advantage,Building better digital experience"},"metadata":{},"digress_in":"does_not_return","dialog_node":"node_17_1525634586096","previous_sibling":"node_6_1525526674582"},{"type":"standard","title":"Transform","output":{"text":{"values":["Do you feel the need to transform your organization due to competitor innovation?"],"selection_policy":"sequential"}},"context":{"graph":true,"choices":true,"options":"YES,NO"},"metadata":{},"digress_in":"does_not_return","dialog_node":"node_11_1525634199910","previous_sibling":"node_23_1525635643714"},{"type":"standard","title":"Welcome","output":{"text":{"values":["Hello, I'm the CIO chatbot. Before we start, can I ask your name?"],"selection_policy":"sequential"}},"context":{"graph":false,"choices":false},"metadata":{},"conditions":"welcome","dialog_node":"Welcome"}],"workspace_id":"bcbca45f-9e03-4021-a715-b7ff694f23ae","counterexamples":[],"learning_opt_out":false}
+{
+  "name": "CIO_demo",
+  "intents": [],
+  "entities": [
+    {
+      "entity": "barriers",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "culture and people",
+          "synonyms": [
+            "culture",
+            "people",
+            "culture and people"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "cyber security threats",
+          "synonyms": [
+            "security",
+            "cyber security",
+            "security threats",
+            "cyber threats"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "it budget",
+          "synonyms": [
+            "budget"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "lack of skills",
+          "synonyms": [
+            "skills",
+            "no skills"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "tech",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "ai/cognitive computing",
+          "synonyms": [
+            "ai",
+            "artificial intelligence",
+            "cognitive",
+            "cognitive computing",
+            "machine learning"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "robotic process automation",
+          "synonyms": [
+            "robotics",
+            "automation",
+            "process automation"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "cloud computing",
+          "synonyms": [
+            "cloud"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "blockchain",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "internet of things",
+          "synonyms": [
+            "iot"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "3d printing",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "physical robots",
+          "synonyms": [
+            "robots"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "mobile technology and appliances",
+          "synonyms": [
+            "mobile tech"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "augmented reality",
+          "synonyms": [
+            "ar",
+            "augmented"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "virtual reality",
+          "synonyms": [
+            "vr",
+            "virtual"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "insights_confirmation",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "no",
+          "synonyms": [
+            "nope",
+            "no thanks",
+            "not really"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "yes",
+          "synonyms": [
+            "yes please",
+            "yeah",
+            "sure"
+          ]
+        }
+      ]
+    },
+    {
+      "entity": "impact",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "competition",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "market changes",
+          "synonyms": [
+            "market",
+            "changes"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "inside the organization",
+          "synonyms": [
+            "inside",
+            "organization",
+            "inside the organization"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "technology",
+          "synonyms": [
+            "tech"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "phone",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "phone",
+          "patterns": [
+            "[0-9]+"
+          ]
+        }
+      ]
+    },
+    {
+      "entity": "email",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "email",
+          "patterns": [
+            "(.+)\\@(.+)\\.(.+)"
+          ]
+        }
+      ]
+    },
+    {
+      "entity": "cio_confirmation",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "yes",
+          "synonyms": [
+            "sure",
+            "yes please",
+            "yeah"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "no",
+          "synonyms": [
+            "nope",
+            "not really"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "priorities",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "innovate for competetive advantage",
+          "synonyms": [
+            "innovate",
+            "competetive",
+            "advantage",
+            "competitive advantage"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "meet business needs",
+          "synonyms": [
+            "needs",
+            "business",
+            "business needs"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "optimize investments",
+          "synonyms": [
+            "optimise",
+            "investments"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "build better digital experience",
+          "synonyms": [
+            "digital experience",
+            "digital",
+            "better digital experience"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "org_type",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "reinventer",
+          "synonyms": [
+            "reinventor"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "aspirational",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "practitioner",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "innovation",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "internal",
+          "synonyms": [
+            "internal innovation",
+            "internal",
+            "internally"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "external",
+          "synonyms": [
+            "external innovation",
+            "partner",
+            "external",
+            "externally"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-person",
+      "values": []
+    },
+    {
+      "entity": "transform_confirmation",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "no",
+          "synonyms": [
+            "nope",
+            "not really"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "yes",
+          "synonyms": [
+            "yes please",
+            "yeah",
+            "sure"
+          ]
+        }
+      ],
+      "fuzzy_match": false
+    },
+    {
+      "entity": "ibm",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "ibm",
+          "synonyms": [
+            "IBM"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "role",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "technology visionary",
+          "synonyms": [
+            "tech visionary",
+            "visionary"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "trusted business advisor",
+          "synonyms": [
+            "trusted advisor",
+            "business advisor",
+            "advisor"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "transformational business leader",
+          "synonyms": [
+            "transformational leader",
+            "business leader",
+            "leader"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "it coordinator and manager",
+          "synonyms": [
+            "it coordinator",
+            "it manager",
+            "coordinator",
+            "manager"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "language": "en",
+  "metadata": {
+    "api_version": {
+      "major_version": "v1",
+      "minor_version": "2018-07-10"
+    }
+  },
+  "description": "",
+  "dialog_nodes": [
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1525631495214",
+      "event_name": "focus",
+      "dialog_node": "handler_5_1525631495214",
+      "previous_sibling": "handler_4_1525631495214"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1525631495214",
+      "context": {
+        "company": "@company.literal"
+      },
+      "metadata": {},
+      "conditions": "@company.literal",
+      "event_name": "input",
+      "dialog_node": "handler_4_1525631495214"
+    },
+    {
+      "type": "standard",
+      "title": "Contact You Reply",
+      "output": {},
+      "parent": "node_1_1528066301305",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "@cio_confirmation",
+      "dialog_node": "node_1_1528066861501",
+      "digress_out": "allow_all"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Can you Please enter you Email?"
+          ]
+        }
+      },
+      "parent": "node_1_1528066861501",
+      "context": {
+        "graph": false,
+        "choices": false
+      },
+      "metadata": {},
+      "conditions": "@cio_confirmation:yes",
+      "dialog_node": "node_2_1528066904060",
+      "previous_sibling": "node_4_1528067759895"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Thank you for taking part in this survey. We hope you gained some industry insight."
+          ]
+        }
+      },
+      "parent": "node_1_1528066861501",
+      "metadata": {},
+      "conditions": "@cio_confirmation:no",
+      "dialog_node": "node_3_1528066928683",
+      "previous_sibling": "node_2_1528066904060"
+    },
+    {
+      "type": "standard",
+      "title": "Email Recieved",
+      "output": {
+        "text": {
+          "values": [
+            "Please Enter your Phone number"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1528066861501",
+      "metadata": {},
+      "conditions": "@email",
+      "dialog_node": "node_4_1528067759895"
+    },
+    {
+      "type": "standard",
+      "title": "impact_answer",
+      "output": {},
+      "parent": "node_6_1525526674582",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_17_1525634586096"
+      },
+      "conditions": "@impact",
+      "dialog_node": "node_7_1525526769464",
+      "digress_out": "allow_all"
+    },
+    {
+      "type": "standard",
+      "title": "priorities_answer",
+      "output": {},
+      "parent": "node_17_1525634586096",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_23_1525635643714"
+      },
+      "conditions": "@priorities",
+      "dialog_node": "node_18_1525634586170"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "[Answer]% of CIOs also prioritize building better digital experiences."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_18_1525634586170",
+      "context": {},
+      "metadata": {},
+      "conditions": "@priorities:(build better digital experience)",
+      "dialog_node": "node_22_1525634586170",
+      "previous_sibling": "node_21_1525634586170"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "[Answer]% of CIOs also prioritize optimising meeting business needs."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_18_1525634586170",
+      "context": {},
+      "metadata": {},
+      "conditions": "@priorities:(meet business needs)",
+      "dialog_node": "node_20_1525634586170",
+      "previous_sibling": "node_19_1525634586170"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "[Answer]% of CIOs also prioritize optimising investments."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_18_1525634586170",
+      "context": {},
+      "metadata": {},
+      "conditions": "@priorities:(optimize investments)",
+      "dialog_node": "node_21_1525634586170",
+      "previous_sibling": "node_20_1525634586170"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "[Answer]% of CIOs also prioritize innovating for competetive advantage."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_18_1525634586170",
+      "context": {},
+      "metadata": {},
+      "conditions": "@priorities:(innovate for competetive advantage)",
+      "dialog_node": "node_19_1525634586170"
+    },
+    {
+      "type": "frame",
+      "title": "Innovation_a",
+      "output": {},
+      "parent": "node_5_1525526114500",
+      "metadata": {
+        "fallback": "leave",
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1528066301305"
+      },
+      "conditions": "@innovation",
+      "dialog_node": "node_10_1525527313404",
+      "digress_out": "allow_all",
+      "digress_out_slots": "not_allowed"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "[Answer]% of CIOs also find budget to be the biggest barrier to success."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_24_1525635643778",
+      "context": {},
+      "metadata": {},
+      "conditions": "@barriers:(it budget)",
+      "dialog_node": "node_28_1525635643778",
+      "previous_sibling": "node_27_1525635643778"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "[Answer]% of CIOs also find culture and people to be the biggest barrier to success."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_24_1525635643778",
+      "context": {},
+      "metadata": {},
+      "conditions": "@barriers:(culture and people)",
+      "dialog_node": "node_27_1525635643778",
+      "previous_sibling": "node_26_1525635643778"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "[Answer]% of CIOs also find cyber security threats to be the biggest barrier to success."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_24_1525635643778",
+      "context": {},
+      "metadata": {},
+      "conditions": "@barriers:(cyber security threats)",
+      "dialog_node": "node_26_1525635643778",
+      "previous_sibling": "node_25_1525635643778"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "[Answer]% of CIOs also find lack of skills to be the biggest barrier to success."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_24_1525635643778",
+      "context": {},
+      "metadata": {},
+      "conditions": "@barriers:(lack of skills)",
+      "dialog_node": "node_25_1525635643778"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Sorry I didn't get that. Would you prefer internal or external innovation?"
+      },
+      "parent": "slot_12_1525527337386",
+      "event_name": "focus",
+      "dialog_node": "handler_14_1525527337386",
+      "previous_sibling": "handler_13_1525527337386"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_12_1525527337386",
+      "context": {
+        "innovation": "@innovation"
+      },
+      "conditions": "@innovation",
+      "event_name": "input",
+      "dialog_node": "handler_13_1525527337386"
+    },
+    {
+      "type": "standard",
+      "title": "Phone Recieved",
+      "output": {},
+      "parent": "node_4_1528067759895",
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_42_1525529118486"
+      },
+      "conditions": "@phone",
+      "dialog_node": "node_1_1529702816686"
+    },
+    {
+      "type": "standard",
+      "title": "barriers_answer",
+      "output": {},
+      "parent": "node_23_1525635643714",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_11_1525634199910"
+      },
+      "conditions": "@barriers",
+      "dialog_node": "node_24_1525635643778"
+    },
+    {
+      "type": "slot",
+      "parent": "node_2_1525631453104",
+      "dialog_node": "slot_34_1525647651718",
+      "previous_sibling": "slot_3_1525631495214"
+    },
+    {
+      "type": "standard",
+      "title": "CIO:no",
+      "output": {
+        "text": {
+          "values": [
+            "Can we ask what position you hold in your company?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_2_1525631453104",
+      "context": {
+        "graph": false,
+        "choices": false
+      },
+      "metadata": {},
+      "conditions": "@cio_confirmation:no",
+      "dialog_node": "node_10_1525632091312",
+      "previous_sibling": "node_6_1525631820232"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_2_1525631453104",
+      "metadata": {},
+      "variable": "$company",
+      "dialog_node": "slot_3_1525631495214",
+      "previous_sibling": "node_10_1525632091312"
+    },
+    {
+      "type": "standard",
+      "title": "CIO:yes",
+      "output": {
+        "text": {
+          "values": [
+            "Great! Would you like to know what other CIOs think?"
+          ]
+        }
+      },
+      "parent": "node_2_1525631453104",
+      "context": {
+        "graph": false,
+        "choices": true,
+        "options": "Yes,No"
+      },
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "@cio_confirmation:yes",
+      "dialog_node": "node_6_1525631820232",
+      "digress_out": "allow_all"
+    },
+    {
+      "type": "standard",
+      "title": "Name",
+      "output": {
+        "text": {
+          "values": [
+            "Great! Hi $name, it's nice to meet you."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Welcome",
+      "context": {
+        "name": "<?input_text?>",
+        "graph": false,
+        "choices": false
+      },
+      "metadata": {
+        "fallback": "leave"
+      },
+      "next_step": {
+        "behavior": "skip_user_input"
+      },
+      "conditions": "true",
+      "dialog_node": "node_1_1525525866746",
+      "digress_out": "allow_all"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1525525866746",
+      "metadata": {},
+      "variable": "$name",
+      "dialog_node": "slot_2_1525526028320",
+      "previous_sibling": "node_1_1525630753702"
+    },
+    {
+      "type": "standard",
+      "title": "Company",
+      "output": {
+        "text": {
+          "values": [
+            "Can you tell me what company you work for?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1525525866746",
+      "context": {
+        "graph": false,
+        "choices": false
+      },
+      "metadata": {},
+      "conditions": "true",
+      "dialog_node": "node_1_1525630753702"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "[Answer]% of CIOs feel the same as you do. They prefer partnering for external innovation."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_10_1525527313404",
+      "context": {},
+      "metadata": {},
+      "conditions": "@innovation:external",
+      "dialog_node": "node_15_1525527413042",
+      "previous_sibling": "node_11_1525527337362"
+    },
+    {
+      "type": "slot",
+      "parent": "node_10_1525527313404",
+      "variable": "$innovation",
+      "dialog_node": "slot_12_1525527337386",
+      "previous_sibling": "node_15_1525527413042"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "[Answer]% of CIO feel the same as you do. They prefer internal innovation."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_10_1525527313404",
+      "context": {},
+      "metadata": {},
+      "conditions": "@innovation:internal",
+      "dialog_node": "node_11_1525527337362"
+    },
+    {
+      "type": "standard",
+      "title": "Insights:no",
+      "output": {
+        "text": {
+          "values": [
+            "Ok, thank you for taking the time to speak to us."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_6_1525631820232",
+      "context": {
+        "graph": false,
+        "choices": false
+      },
+      "metadata": {},
+      "conditions": "@insights_confirmation:no",
+      "dialog_node": "node_30_1525640960744",
+      "previous_sibling": "node_29_1525640855162"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Great! Would you like to know where you stand against your peers?"
+          ]
+        }
+      },
+      "parent": "node_6_1525631820232",
+      "disabled": true,
+      "metadata": {},
+      "conditions": "@cio_confirmation:yes",
+      "dialog_node": "node_7_1525631849696",
+      "previous_sibling": "node_30_1525640960744"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            ""
+          ]
+        }
+      },
+      "parent": "node_6_1525631820232",
+      "disabled": true,
+      "metadata": {},
+      "dialog_node": "node_8_1525631874312",
+      "previous_sibling": "node_7_1525631849696"
+    },
+    {
+      "type": "standard",
+      "title": "Insights:yes",
+      "output": {
+        "text": {
+          "values": [
+            "That's great! Let me ask you a few questions."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_6_1525631820232",
+      "context": {
+        "graph": false,
+        "choices": false
+      },
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_6_1525526674582"
+      },
+      "conditions": "@insights_confirmation:yes",
+      "dialog_node": "node_29_1525640855162"
+    },
+    {
+      "type": "standard",
+      "title": "transform_answer",
+      "output": {},
+      "parent": "node_11_1525634199910",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_5_1525526114500"
+      },
+      "conditions": "@transform_confirmation",
+      "dialog_node": "node_12_1525634199956"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1525526028320",
+      "context": {
+        "name": "<?input_text?>"
+      },
+      "metadata": {},
+      "conditions": "@name.literal",
+      "event_name": "input",
+      "dialog_node": "handler_3_1525526028320",
+      "previous_sibling": "handler_4_1525526028320"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1525526028320",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_4_1525526028320"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "You're not alone. [Answer]% of CIOs focus on market changes for the greatest impact."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_7_1525526769464",
+      "context": {},
+      "metadata": {},
+      "conditions": "@impact:(market changes)",
+      "dialog_node": "node_9_1525526905956",
+      "previous_sibling": "node_8_1525526819722"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "You're not alone. [Answer]% of CIOs focus on inside the organization for the greatest impact."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_7_1525526769464",
+      "context": {},
+      "metadata": {},
+      "conditions": "@impact:(inside the organization)",
+      "dialog_node": "node_15_1525634435918",
+      "previous_sibling": "node_9_1525526905956"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "You're not alone. [Answer]% of CIOs focus on competition for the greatest impact."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_7_1525526769464",
+      "context": {},
+      "metadata": {},
+      "conditions": "@impact:competition",
+      "dialog_node": "node_16_1525634438152",
+      "previous_sibling": "node_15_1525634435918"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "You're not alone. [Answer]% of CIOs focus on technology for the greatest impact."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_7_1525526769464",
+      "context": {},
+      "metadata": {},
+      "conditions": "@impact:technology",
+      "dialog_node": "node_8_1525526819722"
+    },
+    {
+      "type": "standard",
+      "title": "company_a",
+      "output": {
+        "text": {
+          "values": [
+            "Great! Are you a CIO at your company?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1525630753702",
+      "context": {
+        "ibm": "@ibm",
+        "graph": false,
+        "choices": true,
+        "options": "Yes,No"
+      },
+      "metadata": {
+        "fallback": "leave"
+      },
+      "conditions": "true || @ibm",
+      "dialog_node": "node_2_1525631453104",
+      "digress_out": "allow_all"
+    },
+    {
+      "type": "standard",
+      "title": "Insights-no",
+      "output": {
+        "text": {
+          "values": [
+            "OK, thank you for taking the time to speak with us."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_33_1525641715744",
+      "context": {
+        "graph": false,
+        "choices": false
+      },
+      "metadata": {},
+      "conditions": "@insights_confirmation:no",
+      "dialog_node": "node_32_1525641084324",
+      "previous_sibling": "node_31_1525641079542"
+    },
+    {
+      "type": "standard",
+      "title": "Insights-yes",
+      "output": {
+        "text": {
+          "values": [
+            "Great! Let me ask you some questions."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_33_1525641715744",
+      "context": {
+        "graph": false,
+        "choices": false
+      },
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_6_1525526674582"
+      },
+      "conditions": "@insights_confirmation:yes",
+      "dialog_node": "node_31_1525641079542"
+    },
+    {
+      "type": "standard",
+      "title": "Job_title",
+      "output": {
+        "text": {
+          "values": [
+            "Thank you. Would you like to learn about some CIO insights anyway?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_10_1525632091312",
+      "context": {
+        "graph": false,
+        "choices": true,
+        "options": "Yes,No"
+      },
+      "metadata": {},
+      "conditions": "true",
+      "dialog_node": "node_33_1525641715744"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_34_1525647651718",
+      "event_name": "focus",
+      "dialog_node": "handler_36_1525647651718",
+      "previous_sibling": "handler_35_1525647651718"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_34_1525647651718",
+      "event_name": "input",
+      "dialog_node": "handler_35_1525647651718"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "You're in the majority. [Answer]% of CIOs feel the need to transform due to competitor innovation. 72% don't."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_12_1525634199956",
+      "context": {},
+      "metadata": {},
+      "conditions": "@transform_confirmation:no",
+      "dialog_node": "node_14_1525634199956",
+      "previous_sibling": "node_13_1525634199956"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "You're not alone. [Answer]% of CIOs feel the need to transform due to competition. It's the highest percentage of the C-suite members."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_12_1525634199956",
+      "context": {},
+      "metadata": {},
+      "conditions": "@transform_confirmation:yes",
+      "dialog_node": "node_13_1525634199956"
+    },
+    {
+      "type": "standard",
+      "title": "thank you",
+      "output": {
+        "text": {
+          "values": [
+            "Thank you for taking part in this survey. We hope you gained some industry insight."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "context": {
+        "graph": false,
+        "choices": false
+      },
+      "metadata": {},
+      "dialog_node": "node_42_1525529118486",
+      "previous_sibling": "node_1_1528066301305"
+    },
+    {
+      "type": "standard",
+      "title": "Priorities",
+      "output": {
+        "text": {
+          "values": [
+            "What are your top priorities for 2018?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "context": {
+        "graph": true,
+        "choices": true,
+        "options": "Meeting business needs,Optimizing investments,Innovate for competitive advantage,Building better digital experience"
+      },
+      "metadata": {},
+      "digress_in": "does_not_return",
+      "dialog_node": "node_17_1525634586096",
+      "previous_sibling": "node_6_1525526674582"
+    },
+    {
+      "type": "standard",
+      "title": "Barriers",
+      "output": {
+        "text": {
+          "values": [
+            "What are your biggest barriers to success for 2018?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "context": {
+        "graph": true,
+        "choices": true,
+        "options": "Cyber security threats,Culture and people,Lack of skills,IT budgets"
+      },
+      "metadata": {},
+      "digress_in": "does_not_return",
+      "dialog_node": "node_23_1525635643714",
+      "previous_sibling": "node_17_1525634586096"
+    },
+    {
+      "type": "standard",
+      "title": "Want Us To Contact You",
+      "output": {
+        "text": {
+          "values": [
+            "Do you want an IBM specialist to contact you to further discuss your priorities and challenges?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "context": {
+        "graph": true,
+        "choices": true,
+        "options": "yes,no"
+      },
+      "metadata": {},
+      "dialog_node": "node_1_1528066301305",
+      "previous_sibling": "node_5_1525526114500"
+    },
+    {
+      "type": "standard",
+      "title": "Transform",
+      "output": {
+        "text": {
+          "values": [
+            "Do you feel the need to transform your organization due to competitor innovation?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "context": {
+        "graph": true,
+        "choices": true,
+        "options": "YES,NO"
+      },
+      "metadata": {},
+      "digress_in": "does_not_return",
+      "dialog_node": "node_11_1525634199910",
+      "previous_sibling": "node_23_1525635643714"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "I didn't understand. You can try rephrasing.",
+            "Can you reword your statement? I'm not understanding.",
+            "I didn't get your meaning."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "metadata": {},
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_9_1525631987618"
+    },
+    {
+      "type": "standard",
+      "title": "Impact",
+      "output": {
+        "text": {
+          "values": [
+            "The modern CIO is constantly balancing where they focus for the biggest impact. Where do you look for the greatest impact in 2018?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "context": {
+        "graph": true,
+        "choices": true,
+        "options": "Technology,Competition,Inside the organization,Market changes"
+      },
+      "metadata": {},
+      "digress_in": "does_not_return",
+      "dialog_node": "node_6_1525526674582",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "No_response",
+      "output": {},
+      "metadata": {},
+      "dialog_node": "node_9_1525631987618",
+      "previous_sibling": "node_42_1525529118486"
+    },
+    {
+      "type": "standard",
+      "title": "Innovate",
+      "output": {
+        "text": {
+          "values": [
+            "Would you prefer to innovate internally or partner for external innovation?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "context": {
+        "graph": true,
+        "choices": true,
+        "options": "Internally,Externally"
+      },
+      "metadata": {},
+      "digress_in": "does_not_return",
+      "dialog_node": "node_5_1525526114500",
+      "previous_sibling": "node_11_1525634199910"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "text": {
+          "values": [
+            "Hello, I'm the CIO chatbot. Before we start, can I ask your name?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "context": {
+        "graph": false,
+        "choices": false
+      },
+      "metadata": {},
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "workspace_id": "1dfdab17-dce2-4f67-b3f8-ca461b5190e0",
+  "counterexamples": [],
+  "learning_opt_out": false,
+  "status": "Available"
+}
